@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/helps")
+@RequestMapping("/help")
 public class HelpController {
     @Autowired
     private HelpService helpService;
