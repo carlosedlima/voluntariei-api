@@ -1,7 +1,8 @@
 package com.cel.voluntariei.controller;
 
 import com.cel.voluntariei.model.Help;
-import com.cel.voluntariei.service.HelpService;
+import com.cel.voluntariei.service.IHelpService;
+import com.cel.voluntariei.service.impl.HelpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.Optional;
 @RequestMapping("/help")
 public class HelpController {
     @Autowired
-    private HelpService helpService;
+    private IHelpService helpService;
 
     @GetMapping
     public List<Help> getAllHelps() {

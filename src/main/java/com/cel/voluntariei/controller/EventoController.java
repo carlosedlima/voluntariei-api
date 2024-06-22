@@ -1,7 +1,8 @@
 package com.cel.voluntariei.controller;
 
 import com.cel.voluntariei.model.Evento;
-import com.cel.voluntariei.service.EventoService;
+import com.cel.voluntariei.service.IEventService;
+import com.cel.voluntariei.service.impl.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.Optional;
 @RequestMapping("/events")
 public class EventoController {
     @Autowired
-    private EventoService eventoService;
+    private IEventService eventoService;
 
     @GetMapping
     public List<Evento> getAllEventos() {

@@ -1,7 +1,8 @@
-package com.cel.voluntariei.service;
+package com.cel.voluntariei.service.impl;
 
 import com.cel.voluntariei.model.Evento;
 import com.cel.voluntariei.repository.EventoRepository;
+import com.cel.voluntariei.service.IEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EventoService {
+public class EventoService implements IEventService {
     @Autowired
     private EventoRepository eventoRepository;
 

@@ -3,7 +3,8 @@ package com.cel.voluntariei.controller;
 import com.cel.voluntariei.dto.OngDTO;
 import com.cel.voluntariei.model.LoginRequest;
 import com.cel.voluntariei.model.Ong;
-import com.cel.voluntariei.service.OngService;
+import com.cel.voluntariei.service.IOngService;
+import com.cel.voluntariei.service.impl.OngService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class OngController {
     private static final Logger logger = LoggerFactory.getLogger(OngController.class);
 
     @Autowired
-    private OngService ongService;
+    private IOngService ongService;
 
     @GetMapping
     public ResponseEntity<List<Ong>> getAllOngs() {

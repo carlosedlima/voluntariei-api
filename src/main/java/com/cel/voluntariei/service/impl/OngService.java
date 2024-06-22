@@ -1,7 +1,8 @@
-package com.cel.voluntariei.service;
+package com.cel.voluntariei.service.impl;
 
 import com.cel.voluntariei.model.Ong;
 import com.cel.voluntariei.repository.OngRepository;
+import com.cel.voluntariei.service.IOngService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class OngService {
+public class OngService implements IOngService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -35,7 +36,6 @@ public class OngService {
     }
 
     public Optional<Ong> findByEmailAndSenha(String email, String senha) {
-        logger.debug("Trying to find Ong with email: {} and senha: {}", email, senha);
         Optional<Ong> ong = ongRepository.findByEmailAndSenha(email, senha);
         if (ong.isPresent()) {
             logger.debug("Ong found: {}", ong.get());
