@@ -1,5 +1,6 @@
 # Sobre API para o aplicativo Voluntariei
-
+Este repositório de API faz parte do projeto Voluntariei. 
+Para mais detalhes sobre o aplicativo e sua implementação, consulte o repositório do aplicativo [aqui](https://github.com/seuusuario/repo-do-aplicativo).
 ## Endpoints
 
 Os seguintes endpoints estão disponíveis na aplicação:
