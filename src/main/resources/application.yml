@@ -12,7 +12,3 @@ jpa:
   properties:
     hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect
-
-flyway:
-  enabled: true
-  baseline-on-migrate: true
