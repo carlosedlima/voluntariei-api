@@ -7,7 +7,7 @@ spring:
 
 jpa:
   hibernate:
-    ddl-auto: none  # Desativar a criação automática de tabelas pelo Hibernate
+    ddl-auto: update  # Desativar a criação automática de tabelas pelo Hibernate
   show-sql: true
   properties:
     hibernate:
