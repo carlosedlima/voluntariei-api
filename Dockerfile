@@ -1,14 +1,12 @@
-# Usando uma imagem base do JDK 11
-FROM openjdk:11-jdk-slim
-
-# Definindo o diretório de trabalho dentro do container
+# Etapa de construção
+FROM gradle:7.4.2-jdk11 AS build
 WORKDIR /app
+COPY . .
+RUN ./gradlew build
 
-# Copiando o arquivo JAR gerado pelo Gradle para dentro do container
-COPY build/libs/*.jar app.jar
-
-# Expondo a porta que a aplicação usará
+# Etapa final
+FROM openjdk:11-jdk-slim
+WORKDIR /app
+COPY --from=build /app/build/libs/voluntariei-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-
-# Comando para executar a aplicação
 ENTRYPOINT ["java", "-jar", "app.jar"]
