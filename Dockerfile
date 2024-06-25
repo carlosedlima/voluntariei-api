@@ -2,6 +2,8 @@
 FROM gradle:7.4.2-jdk11 AS build
 WORKDIR /app
 COPY . .
+RUN chmod +x gradlew
+RUN ls -la
 RUN ./gradlew build
 
 # Etapa final
