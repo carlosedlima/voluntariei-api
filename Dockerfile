@@ -1,30 +1,14 @@
-# Etapa de construção
-FROM ubuntu:latest AS build
+# Usando uma imagem base do JDK 11
+FROM openjdk:11-jdk-slim
 
-# Atualiza a lista de pacotes e instala o JDK 17 e outras dependências
-RUN apt-get update && \
-    apt-get install -y openjdk-17-jdk wget unzip
-
-# Define o diretório de trabalho
+# Definindo o diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copia os arquivos do projeto para a imagem
-COPY . .
+# Copiando o arquivo JAR gerado pelo Gradle para dentro do container
+COPY build/libs/*.jar app.jar
 
-# Verifica a versão do Gradle Wrapper
-RUN ./gradlew --version
-
-# Baixa as dependências e compila o projeto
-RUN ./gradlew build --no-daemon --stacktrace --info
-
-# Etapa de execução
-FROM openjdk:17-jdk-slim
-
-# Expõe a porta 8080
+# Expondo a porta que a aplicação usará
 EXPOSE 8080
 
-# Copia o JAR do build para a imagem de execução
-COPY --from=build /app/build/libs/*.jar app.jar
-
-# Define o ponto de entrada
+# Comando para executar a aplicação
 ENTRYPOINT ["java", "-jar", "app.jar"]
