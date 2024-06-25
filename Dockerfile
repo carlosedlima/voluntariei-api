@@ -1,14 +1,9 @@
 # Etapa de construção
 FROM ubuntu:latest AS build
 
-# Atualiza a lista de pacotes e instala o JDK 17
+# Atualiza a lista de pacotes e instala o JDK 17 e outras dependências
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk wget unzip
-
-# Instala o Gradle
-RUN wget https://services.gradle.org/distributions/gradle-7.6-bin.zip -P /tmp && \
-    unzip /tmp/gradle-7.6-bin.zip -d /opt && \
-    ln -s /opt/gradle-7.6/bin/gradle /usr/bin/gradle
 
 # Define o diretório de trabalho
 WORKDIR /app
@@ -16,11 +11,11 @@ WORKDIR /app
 # Copia os arquivos do projeto para a imagem
 COPY . .
 
-# Verifica a versão do Gradle
-RUN gradle --version
+# Verifica a versão do Gradle Wrapper
+RUN ./gradlew --version
 
-# Compila o projeto
-RUN gradle build --no-daemon
+# Baixa as dependências e compila o projeto
+RUN ./gradlew build --no-daemon --stacktrace --info
 
 # Etapa de execução
 FROM openjdk:17-jdk-slim
